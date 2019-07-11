@@ -1,4 +1,4 @@
-var { user_model} = require('../models')
+var { user_model} = require('../../models')
 var md5 = require('md5')
 const bcrypt = require('bcrypt');
 
@@ -20,7 +20,7 @@ login = async (username, hashedPassword) => {
 		return result
 	}
 
-} 
+}
 module.exports = async function login_api(req, res) {
  	console.log("body", req.body)
  	console.log("LOGIN IN")
@@ -39,6 +39,6 @@ module.exports = async function login_api(req, res) {
 
 	}
 	catch(err){
-		res.status(400).send({code: 'Login failed', error: err.message});	
+		res.status(400).send({code: 'Login failed', error: err.message});
 	}
  }

@@ -1,4 +1,4 @@
-var {user_model, email_model } = require('../models')
+var {user_model, email_model } = require('../../models')
 var md5 = require('md5');
 
 async function check_referral(code){
@@ -32,6 +32,6 @@ module.exports = async function signup_api(req, res) {
  		}
  	}
  	catch(err){
- 		res.status(400).send({msg: 'Signup failed', err});	
+ 		res.status(400).send({msg: 'Signup failed', err});
  	}
  }

@@ -1,4 +1,4 @@
-var {user_model} = require('../models')
+var {user_model} = require('../../models')
 var md5 = require('md5')
 
 module.exports = async function user_data_api(req, res) {
@@ -10,6 +10,6 @@ module.exports = async function user_data_api(req, res) {
 	    res.send({code: "success", clam_balance: balance, ref_code: ref_code})
  	}
  	catch(err){
- 		res.status(400).send({msg: 'Failed getting user data', err});	
+ 		res.status(400).send({msg: 'Failed getting user data', err});
  	}
  }

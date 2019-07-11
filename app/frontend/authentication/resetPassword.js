@@ -1,4 +1,4 @@
-var { user_model, email_model} = require('../models')
+var { user_model, email_model} = require('../../models')
 var md5 = require('md5')
 async function makePass() {
   var text = "";
@@ -43,7 +43,7 @@ module.exports = async function reset_pass(req, res){
 	}
 	catch(err){
 		console.log(err)
-		res.status(400).send({msg: 'Reset failed', err});	
+		res.status(400).send({msg: 'Reset failed', err});
 	}
 
 }

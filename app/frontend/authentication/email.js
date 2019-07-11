@@ -1,4 +1,4 @@
-var { user_model} = require('../models')
+var { user_model} = require('../../models')
 
 module.exports = async function confirm_email(req, res){
 	let key = req.params.key
