@@ -8,11 +8,15 @@ Date.prototype.toMysqlFormat = function() {
 
 
 //define the endpoints
-app.post('/login', require("./login"))
-app.post('/signup', require("./signup"))
-app.get('/all_users', require("./allUsers"))
-app.get('/clam_balance', require("./clamBalance"))
-app.get('/user_data/:username', require("./userData"))
-app.post('/reset_password', require('./resetPassword'))
-app.post('/update_password', require('./updatePassword'))
-app.get('/email/:key', require("./email"))
+
+//authentication related endpoints
+app.post('/login', require("./authentication/login"))
+app.post('/signup', require("./authentication/signup"))
+app.post('/reset_password', require('./authentication/resetPassword'))
+app.post('/update_password', require('./authentication/updatePassword'))
+app.get('/email/:key', require("./authentication/email"))
+
+//user related endpoints
+app.get('/clam_balance', require("./user/clamBalance"))
+app.get('/user_data/:username', require("./user/userData"))
+app.get('/all_users', require("./user/allUsers"))
