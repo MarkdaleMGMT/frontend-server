@@ -20,3 +20,11 @@ app.get('/email/:key', require("./authentication/email"))
 app.get('/clam_balance', require("./user/clamBalance"))
 app.get('/user_data/:username', require("./user/userData"))
 app.get('/all_users', require("./user/allUsers"))
+
+
+//investment related endpoints
+app.get('/all_investments', require("./investment/allInvestments"))
+
+
+//test endpoint
+app.post('/test', require("./test"))
