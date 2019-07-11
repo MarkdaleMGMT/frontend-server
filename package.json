@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "REST apis to connect to mysql database",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "author": "Carlson Lau",
+  "license": "ISC",
+  "dependencies": {
+    "@godaddy/terminus": "^4.1.0",
+    "bcrypt": "^3.0.3",
+    "express": "^4.16.4",
+    "md5": "^2.2.1",
+    "mysql2": "^1.6.4",
+    "nodemailer": "^5.1.1"
+  }
+}
