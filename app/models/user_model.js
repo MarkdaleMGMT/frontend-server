@@ -24,7 +24,7 @@ async function create_user(body){
   const saltRounds = 10;
   let hashedPassword = await bcrypt.hash(password, saltRounds)
   let verify_key = md5(username).slice(-5)
-  let query = "INSERT INTO `user` (`username`, `password`, `level`, `last_login`, `email`, `email_verify_key`, `email_verify_flag`, `account_type`, `ledger_account`, `sub_account1`, `sub_account2`, `affiliate`) VALUES (?, ?, 1, CURRENT_TIMESTAMP, ?, ?, '0', 'credit', 'liability', NULL, NULL, '');"
+  let query = "INSERT INTO `user` (`username`, `password`, `level`, `last_login`, `email`, `email_verify_key`, `email_verify_flag`, `affiliate`) VALUES (?, ?, 1, CURRENT_TIMESTAMP, ?, ?, '0', '');"
   let result = db.connection.query(query, [username, hashedPassword, email, verify_key])
   console.log("signup", username)
   return verify_key

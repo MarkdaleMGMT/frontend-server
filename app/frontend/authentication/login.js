@@ -37,8 +37,8 @@ module.exports = async function login_api(req, res) {
 	    if(!result.result){
 	    	throw Error (result.code)
 	    }
-	    let balance = await user_model.get_balance(username)
-    	res.send({ code: "Login successful", level: result.level, clam_balance: balance, ref_code: result.ref_code}) // TODO: returning clam_balance depreciated
+	    // let balance = await user_model.get_balance(username)
+    	res.send({ code: "Login successful", level: result.level, ref_code: result.ref_code}) // TODO: returning clam_balance depreciated
 
 	}
 	catch(err){
