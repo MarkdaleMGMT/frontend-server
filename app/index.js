@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.send({msg: 'hello! Server is up and running'});
 });
 
-app.use('/frontend', require('./frontend'));
+app.use('/', require('./frontend'));
 
 
 
