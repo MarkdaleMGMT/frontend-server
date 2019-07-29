@@ -1,6 +1,6 @@
 var { user_model, email_model } = require('../../models')
 var md5 = require('md5')
-
+var mysql = require('../../../config/components/mysql.js')
 
 
 module.exports = async function invite_user_api(req, res) {
@@ -16,7 +16,7 @@ module.exports = async function invite_user_api(req, res) {
 
     //prepare email
     let link = "http://"+ mysql.host + "/signin?ref_code=" + ref_code
-    let text = "You have been invited by " +user.username + ". You can use the following link to Sign Up: " + link + "\n "
+    let text = "You have been invited by " +user.username + ". You can use the following link to Sign Up: " + link + " using the referral code "+ref_code+"\n "
     let send_email = await email_model.send_email(email, text)
     console.log("send email", send_email)
 
@@ -24,6 +24,6 @@ module.exports = async function invite_user_api(req, res) {
 	  res.send({code: "Invite sent successfully"})
  	}
  	catch(err){
- 		res.status(400).send({msg: 'Failed to send invite', err});
+ 		res.status(400).send({msg: 'Failed to send invite', error:err.message});
  	}
  }
