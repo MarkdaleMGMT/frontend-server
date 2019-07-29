@@ -20,6 +20,7 @@ app.get('/email/:key', require("./authentication/email"))
 app.get('/clam_balance', require("./user/clamBalance"))
 app.get('/user_data/:username', require("./user/userData"))
 app.get('/all_users', require("./user/allUsers"))
+app.post('/invite_user', require("./user/inviteUser"))
 
 
 //investment related endpoints
