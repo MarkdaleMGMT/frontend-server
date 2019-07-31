@@ -20,6 +20,7 @@ module.exports = async function get_registered_users_api(req, res) {
     end_date = dateFormat(end_date,'yyyy-mm-dd');
 
 
+    //get all logs for daily registered users
     let daily_registered_users = await user_stats_model.get_registered_users(start_date, end_date);
     let cumulative_sum = daily_registered_users[0]['count'];
 
@@ -35,7 +36,9 @@ module.exports = async function get_registered_users_api(req, res) {
     console.log("daily_registered_users: ",daily_registered_users);
 
     let dates = getDates(start_date,end_date);
-    let user_count = 0;
+
+    //initialized to the number of users registered as of that date
+    let user_count = await user_stats_model.get_registered_users_by_date(start_date);
     let stats = [];
     //iterate over the dates
 
