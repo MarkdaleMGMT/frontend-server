@@ -31,6 +31,8 @@ module.exports = async function get_registered_users_api(req, res) {
 
     }
 
+    console.log("daily_registered_users: ",daily_registered_users);
+
     let dates = getDates(start_date,end_date);
     let user_count = 0;
     let stats = [];
@@ -38,14 +40,18 @@ module.exports = async function get_registered_users_api(req, res) {
 
     for(let i=0; i<dates.length; i++){
 
+      console.log("date: ",dateFormat(dates[i],'yyyy-mm-dd'));
+
       //entries of current date
       let entry = daily_registered_users.filter(function (el) {
         // console.log(el.date,dates[i]);
         return el.registered_on == dateFormat(dates[i],'yyyy-mm-dd');
       });
 
+
+
       if(entry.length > 0){
-        user_count += entry.count
+        user_count += entry[0].cumulative_sum
       }
 
       stats.push({
