@@ -68,7 +68,7 @@ module.exports = async function get_registered_users_api(req, res) {
 	  res.send({code: "Success", stats})
  	}
  	catch(err){
- 		res.status(400).send({msg: 'Failed to fetch registered users', err});
+ 		res.status(400).send({msg: 'Failed to fetch registered users', err:err.message});
  	}
  }
 
