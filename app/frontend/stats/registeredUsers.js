@@ -41,19 +41,17 @@ module.exports = async function get_registered_users_api(req, res) {
 
     for(let i=0; i<dates.length; i++){
 
-      console.log("date: ",moment(dates[i],'yyyy-mm-dd'));
-      console.log("date: ",moment(daily_registered_users[i]['registered_on'],'yyyy-mm-dd'));
+      // console.log("date: ",moment(dates[i],'yyyy-mm-dd'));
+      // console.log("date: ",moment(daily_registered_users[0]['registered_on'],'yyyy-mm-dd'));
 
       //entries of current date
       let entry = daily_registered_users.filter(function (el) {
         // console.log(el.date,dates[i]);
-        return dateFormat(el.registered_on,'yyyy-mm-dd') == dates[i]);
+        return dateFormat(el.registered_on,'yyyy-mm-dd') == dateFormat(dates[i],'yyyy-mm-dd'));
       });
 
-
-
       if(entry.length > 0){
-        user_count += entry[0].cumulative_sum
+        user_count += entry[0].cumulative_sum;
       }
 
       stats.push({
@@ -62,7 +60,8 @@ module.exports = async function get_registered_users_api(req, res) {
       });
 
       //remove the found entires
-      daily_registered_users = daily_registered_users.splice(1)
+      if(daily_registered_users.length>0)
+        daily_registered_users = daily_registered_users.splice(1);
     }//end for
 
 
