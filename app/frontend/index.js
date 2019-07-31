@@ -28,6 +28,7 @@ app.get('/all_investments', require("./investment/allInvestments"))
 
 //stats
 app.post('/stats/daily_registered_users', require("./stats/registeredUsers"))
+app.get('/stats/total_users', require("./stats/totalUsers"))
 
 
 //test endpoint
