@@ -73,7 +73,7 @@ module.exports = async function get_registered_users_api(req, res) {
       });
 
       //remove the found entires
-      if(daily_registered_users.length>0)
+      if(entry && entry.length>0)
         daily_registered_users = daily_registered_users.splice(1);
     }//end for
 
