@@ -1,6 +1,7 @@
 const dateFormat = require('dateformat');
 const { user_stats_model } = require('../../models')
 const { getDates } = require('../../util/common')
+const moment = require("moment");
 
 
 module.exports = async function get_registered_users_api(req, res) {
@@ -40,12 +41,13 @@ module.exports = async function get_registered_users_api(req, res) {
 
     for(let i=0; i<dates.length; i++){
 
-      console.log("date: ",dateFormat(dates[i],'yyyy-mm-dd'));
+      console.log("date: ",moment(dates[i],'yyyy-mm-dd'));
+      console.log("date: ",moment(daily_registered_users[i]['registered_on'],'yyyy-mm-dd'));
 
       //entries of current date
       let entry = daily_registered_users.filter(function (el) {
         // console.log(el.date,dates[i]);
-        return dateFormat(el.registered_on,'yyyy-mm-dd') == dateFormat(dates[i],'yyyy-mm-dd');
+        return dateFormat(el.registered_on,'yyyy-mm-dd') == dates[i]);
       });
 
 
@@ -68,6 +70,7 @@ module.exports = async function get_registered_users_api(req, res) {
 	  res.send({code: "Success", stats})
  	}
  	catch(err){
+    console.error(err);
  		res.status(400).send({msg: 'Failed to fetch registered users', err:err.message});
  	}
  }
