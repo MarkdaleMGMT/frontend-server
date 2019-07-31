@@ -40,6 +40,7 @@ module.exports = async function get_registered_users_api(req, res) {
 
     //initialized to the number of users registered as of that date
     let user_count = await user_stats_model.get_registered_users_by_date(start_date);
+    user_count = parseInt(user_count);
     let stats = [];
 
 
@@ -54,7 +55,7 @@ module.exports = async function get_registered_users_api(req, res) {
       //entries of current date
       let entry = daily_registered_users.filter(function (el) {
         // console.log(el.date,dates[i]);
-        console.log(dateFormat(el.registered_on,'yyyy-mm-dd'), dates[i]);
+        // console.log(dateFormat(el.registered_on,'yyyy-mm-dd'), dates[i]);
         return dateFormat(el.registered_on,'yyyy-mm-dd') == dates[i]
       });
 
@@ -64,7 +65,7 @@ module.exports = async function get_registered_users_api(req, res) {
 
         console.log("entries found: ",entry.length);
         console.log("adding user count ");
-        user_count += entry[0].count;
+        user_count += parseInt(entry[0].count);
       }
 
       stats.push({
