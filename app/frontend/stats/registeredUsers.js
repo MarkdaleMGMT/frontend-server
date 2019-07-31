@@ -47,7 +47,7 @@ module.exports = async function get_registered_users_api(req, res) {
       //entries of current date
       let entry = daily_registered_users.filter(function (el) {
         // console.log(el.date,dates[i]);
-        return dateFormat(el.registered_on,'yyyy-mm-dd') == dateFormat(dates[i],'yyyy-mm-dd'));
+        return dateFormat(el.registered_on,'yyyy-mm-dd') == dateFormat(dates[i],'yyyy-mm-dd');
       });
 
       if(entry.length > 0){
