@@ -9,7 +9,7 @@ async function get_registered_users(start_date, end_date){
 
 async function get_registered_users_by_date(date){
 
-  const [rows, fields] = await db.connection.query("SELECT sum(daily_registered_users.count) FROM daily_registered_users WHERE registered_on <= ?",[date])
+  const [rows, fields] = await db.connection.query("SELECT sum(daily_registered_users.count) AS 'count' FROM daily_registered_users WHERE registered_on <= ?",[date])
   return rows;
 }
 
