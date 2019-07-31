@@ -24,38 +24,47 @@ module.exports = async function get_registered_users_api(req, res) {
     let daily_registered_users = await user_stats_model.get_registered_users(start_date, end_date);
     let cumulative_sum = daily_registered_users[0]['count'];
 
-    for(let i=0; i<daily_registered_users.length; i++){
-
-      if(i!=0)
-        cumulative_sum += daily_registered_users[i]['count'];
-
-      daily_registered_users[i]['cumulative_sum'] = cumulative_sum;
-
-    }
+    // for(let i=0; i<daily_registered_users.length; i++){
+    //
+    //   if(i!=0)
+    //     cumulative_sum += daily_registered_users[i]['count'];
+    //
+    //   daily_registered_users[i]['cumulative_sum'] = cumulative_sum;
+    //
+    // }
 
     console.log("daily_registered_users: ",daily_registered_users);
 
     let dates = getDates(start_date,end_date);
 
+
     //initialized to the number of users registered as of that date
     let user_count = await user_stats_model.get_registered_users_by_date(start_date);
     let stats = [];
+
+
     //iterate over the dates
 
     for(let i=0; i<dates.length; i++){
 
+      console.log("index: ",i," looking for current date: "+dates[i]);
       // console.log("date: ",moment(dates[i],'yyyy-mm-dd'));
       // console.log("date: ",moment(daily_registered_users[0]['registered_on'],'yyyy-mm-dd'));
 
       //entries of current date
       let entry = daily_registered_users.filter(function (el) {
         // console.log(el.date,dates[i]);
-        console.log(dateFormat(el.registered_on,'yyyy-mm-dd') == dates[i]);
+        console.log(dateFormat(el.registered_on,'yyyy-mm-dd'), dates[i]);
         return dateFormat(el.registered_on,'yyyy-mm-dd') == dates[i]
       });
 
-      if(entry.length > 0){
-        user_count += entry[0].cumulative_sum;
+
+
+      if(entry && entry.length > 0){
+
+        console.log("entries found: ",entry.length);
+        console.log("adding user count ");
+        user_count += entry[0].count;
       }
 
       stats.push({
