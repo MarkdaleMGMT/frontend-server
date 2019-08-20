@@ -24,7 +24,7 @@ app.post('/invite_user', require("./user/inviteUser"))
 
 
 //investment related endpoints
-app.get('/all_investments', require("./investment/allInvestments"))
+app.post('/all_investments', require("./investment/allInvestments"))
 
 //stats
 app.post('/stats/daily_registered_users', require("./stats/registeredUsers"))
