@@ -1,8 +1,8 @@
 module.exports = mysql_config = {
-    host: '165.227.35.11',
-    user: 'user',
-    password: 'Zh8gqQhSK9meM7uu',
-    database: 'dev',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE,
     multipleStatements: true,
     connectionLimit : 10
 }

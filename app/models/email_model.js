@@ -1,23 +1,13 @@
 const nodemailer = require("nodemailer");
+const util = require("util");
+const { email_config } = require('../../config');
 
 
-var transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, 
-    requireTLS: true,
-    auth: {
-      user: "uppercanadacoins@gmail.com", 
-      pass: "UpperCanadaCoins123"
-    },
-    tls : {
-  ciphers : 'SSLv3'
-}
-  });
+var transporter = nodemailer.createTransport(email_config);
 
 async function send_email(receiver, text){
 	let mailOptions = {
-		from: '"Markdale <uppercanadacoins@gmail.com>', // sender address
+		from: '"Markdale <uppercanadacoins@gmail.com>', // sender addressutil.format('"Markdale <%s>', process.env.GMAIL)
 		to: receiver, // list of receivers
 		subject: "Markdale Financial Management", // Subject line
 		text: text // plain text body
@@ -30,6 +20,6 @@ async function send_email(receiver, text){
 	                console.log("successfully sent email!")
 	            }
 	        });
-	return 
+	return
 }
 module.exports = {send_email}

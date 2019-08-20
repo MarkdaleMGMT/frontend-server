@@ -32,6 +32,6 @@ module.exports = async function signup_api(req, res) {
  		}
  	}
  	catch(err){
- 		res.status(400).send({msg: 'Signup failed', err});
+ 		res.status(400).send({code: 'Signup failed', message:err.message});
  	}
  }

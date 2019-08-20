@@ -1,23 +1,13 @@
 const nodemailer = require("nodemailer");
+const { email_config } = require('../../config');
 
 
-var transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, 
-    requireTLS: true,
-    auth: {
-      user: "uppercanadacoins@gmail.com", 
-      pass: "UpperCanadaCoins123"
-    },
-    tls : {
-  ciphers : 'SSLv3'
-}
-  });
+
+var transporter = nodemailer.createTransport(email_config);
 
 async function sendEmail(receiver, subject, text){
 	let mailOptions = {
-		from: '"Markdale Financial Management" <uppercanadacoins@gmail.com>', // sender address
+		from: '"Markdale <uppercanadacoins@gmail.com>', // sender address
 		to: receiver, // list of receivers
 		subject: "Confirm Email for Markdale Financial Management", // Subject line
 		text: text // plain text body
