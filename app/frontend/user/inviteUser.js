@@ -25,6 +25,6 @@ module.exports = async function invite_user_api(req, res) {
 	  res.send({code: "Invite sent successfully"})
  	}
  	catch(err){
- 		res.status(400).send({msg: 'Failed to send invite', error:err.message});
+ 		res.status(400).send({code: 'Failed to send invite', message:err.message});
  	}
  }
