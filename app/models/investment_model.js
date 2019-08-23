@@ -6,7 +6,9 @@ async function get_all_investments(){
 }
 
 async function get_all_investments_per_user(username){
-  const [investments, fields] = await db.connection.query("SELECT * FROM investment WHERE investment_id IN (SELECT investment_id FROM account where username = ?);",[username]);
+  const [investments, fields] = await db.connection.query(
+    "SELECT investment.*, account.account_id FROM investment JOIN account ON (investment.investment_id = account.investment_id) WHERE username=?;"
+    ,[username]);
   return investments;
 }
 
