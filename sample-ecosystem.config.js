@@ -1,8 +1,8 @@
 module.exports = {
   apps : [{
     name: 'frontend_server',
-    script: "npm",
-    args : "start frontend_server.js",
+    script: "node frontend_server.js",
+    //args : "start frontend_server.js",
     // script: './server.js',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
