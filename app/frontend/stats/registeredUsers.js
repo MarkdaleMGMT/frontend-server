@@ -71,7 +71,7 @@ module.exports = async function get_registered_users_api(req, res) {
       }
 
       stats.push({
-        'date' : dates[i],
+        'date' : dateFormat(new Date(dates[i]),'dd mm yyyy'),
         'count': user_count
       });
 
