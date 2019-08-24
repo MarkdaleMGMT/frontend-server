@@ -41,6 +41,8 @@ module.exports = async function get_registered_users_api(req, res) {
     //initialized to the number of users registered as of that date
     let user_count = await user_stats_model.get_registered_users_by_date(start_date);
     user_count = parseInt(user_count);
+
+		if(!user_count) user_count = 0;
     let stats = [];
 
 
