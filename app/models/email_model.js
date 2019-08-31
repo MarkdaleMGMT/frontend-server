@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport(email_config);
 
 async function send_email(receiver, subject, text){
 	let mailOptions = {
-		from: '"Qoinify <admin@qoinify.com>', // sender addressutil.format('"Markdale <%s>', process.env.GMAIL)
+		from: '"Qoinify" <admin@qoinify.com>', // sender addressutil.format('"Markdale <%s>', process.env.GMAIL)
 		to: receiver, // list of receivers
 		subject: subject, // Subject line
 		text: text // plain text body
