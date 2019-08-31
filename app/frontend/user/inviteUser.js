@@ -1,6 +1,6 @@
 var { user_model, email_model } = require('../../models')
 var md5 = require('md5')
-var mysql = require('../../../config/components/mysql.js')
+var { domain } = require('../../../config')
 
 
 
@@ -16,9 +16,9 @@ module.exports = async function invite_user_api(req, res) {
     let ref_code = md5(user.username).slice(0,5);
 
     //prepare email
-    let link = "http://"+ mysql.host + "/signup?ref_code=" + ref_code
+    let link = domain + "/signup?ref_code=" + ref_code
     let text = "You have been invited by " +user.username + ". You can use the following link to Sign Up: " + link + " using the referral code "+ref_code+"\n "
-    let send_email = await email_model.send_email(email, text)
+    let send_email = await email_model.send_email(email, "Affiliate Invitation", text)
     console.log("send email", send_email)
 
     //send email

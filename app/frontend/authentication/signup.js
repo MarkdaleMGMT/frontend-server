@@ -1,6 +1,9 @@
 var {user_model, email_model } = require('../../models')
+var { domain } = require('../../../config')
 var md5 = require('md5');
-var mysql = require('../../../config/components/mysql.js')
+
+
+
 async function check_referral(code){
 	let users = await user_model.get_all_users()
 	for(let i=0; i< users.length; i++){
@@ -21,8 +24,8 @@ module.exports = async function signup_api(req, res) {
 	 		let add_ref = await user_model.add_referral(req.body.username, verify)
 	 		console.log("add ref", add_ref)
 	 		console.log("email", req.body.email)
-	 		let link = "http://" + mysql.host + "/frontend/email/" + result
-	 		let send_email = await email_model.send_email(req.body.email, "please confirm your email by going to this link: " + link)
+	 		let link = domain + "/frontend/email/" + result
+	 		let send_email = await email_model.send_email(req.body.email, "Email Verification", "please confirm your email by going to this link: " + link)
 	 		res.send({code: "Signup successful", ref_code: md5(req.body.username).slice(0,5)})
 		}
 

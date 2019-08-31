@@ -5,11 +5,11 @@ const { email_config } = require('../../config');
 
 var transporter = nodemailer.createTransport(email_config);
 
-async function send_email(receiver, text){
+async function send_email(receiver, subject, text){
 	let mailOptions = {
-		from: '"Markdale <uppercanadacoins@gmail.com>', // sender addressutil.format('"Markdale <%s>', process.env.GMAIL)
+		from: '"Qoinify <admin@qoinify.com>', // sender addressutil.format('"Markdale <%s>', process.env.GMAIL)
 		to: receiver, // list of receivers
-		subject: "Markdale Financial Management", // Subject line
+		subject: subject, // Subject line
 		text: text // plain text body
 		};
 

@@ -1,6 +1,8 @@
 var { user_model, email_model} = require('../../models')
+var { domain } = require('../../../config')
 var md5 = require('md5')
-var mysql = require('../../../config/components/mysql.js')
+// var mysql = require('../../../config/components/mysql.js')
+
 async function makePass() {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -29,11 +31,11 @@ module.exports = async function reset_pass(req, res){
 			let id = await makePass()
 			// console.log("new pass", new_pass)
 			// let text = "Your new password is: " + new_pass
-			let link = "http://"+ mysql.host + "/resetPassword?token=" + id
+			let link =  domain + "/resetPassword?token=" + id
 			let text = "Your username is: " + email_check[1] + ". Reset your password at the following link: " + link + "\n The link will expire in a week."
 			let reset = await user_model.set_email_token(email, id)
 			console.log("reset", reset)
-			let send_email = await email_model.send_email(email, text)
+			let send_email = await email_model.send_email(email, "Password Reset" ,text)
 			console.log("send email", send_email)
 			res.send({code: "Reset successful"})
 		}

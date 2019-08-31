@@ -18,7 +18,8 @@ module.exports = {
       DB_PASS:'db_password',
       DB_DATABASE:'db_name',
       GMAIL:'',
-      GMAIL_PASS:''
+      GMAIL_PASS:'',
+      DOMAIN:''
 
     }
   }]

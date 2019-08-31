@@ -1,4 +1,4 @@
-var { user_model, email_model} = require('../../models')
+var { user_model } = require('../../models')
 
 module.exports = async function update_pass(req, res){
 	let token = req.body.token
