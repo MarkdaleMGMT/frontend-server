@@ -16,6 +16,13 @@ async function get_all_users(){
   return users;
 }
 
+
+async function update_new_user_flag(username, flag){
+
+    const [result, fields] = await db.connection.query("UPDATE user SET new_user = ? WHERE username = ?",[flag, username]);
+    return result.affectedRows == 1;
+}
+
 async function create_user(body){
   console.log("new user body", body)
   let username = body.username
@@ -131,5 +138,6 @@ module.exports = {
   get_balance,
   set_email_token,
   check_token_expire,
-  reset_password
+  reset_password,
+  update_new_user_flag
 };

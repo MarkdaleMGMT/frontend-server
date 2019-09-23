@@ -21,6 +21,7 @@ app.get('/clam_balance', require("./user/clamBalance"))
 app.get('/user_data/:username', require("./user/userData"))
 app.get('/all_users', require("./user/allUsers"))
 app.post('/invite_user', require("./user/inviteUser"))
+app.post('/update_info', require("./user/updateInfo"))
 
 
 //investment related endpoints
