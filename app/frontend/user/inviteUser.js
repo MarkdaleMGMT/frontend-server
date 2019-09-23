@@ -18,11 +18,11 @@ module.exports = async function invite_user_api(req, res) {
     //prepare email
     let link = domain + "/signup?ref_code=" + ref_code
     let text = "You have been invited by " +user.username + ". You can use the following link to Sign Up: " + link + " using the referral code "+ref_code+"\n "
-    let send_email = await email_model.send_email(email, "Affiliate Invitation", text)
+    let send_email = await email_model.send_email(email, "Invitation to Qoinify", text)
     console.log("send email", send_email)
 
     //send email
-	  res.send({code: "Invite sent successfully"})
+	  res.send({code: "Invite sent successfully", message: "Your invitation link:" + link}  )
  	}
  	catch(err){
  		res.status(400).send({code: 'Failed to send invite', message:err.message});
