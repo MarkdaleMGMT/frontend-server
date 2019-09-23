@@ -12,7 +12,7 @@ login = async (username, hashedPassword) => {
 	}
 	const match = await bcrypt.compare(hashedPassword, query.password);
 	let successfulLogin =  match && query.email_verify_flag.toString() == '1'  ? true : false
-	let result = successfulLogin ? {result: successfulLogin, level: query.level, ref_code: md5(query.username).slice(0,5)} : {result: successfulLogin}
+	let result = successfulLogin ? {result: successfulLogin, level: query.level, ref_code: md5(query.username).slice(0,5), new_user:query.new_user} : {result: successfulLogin}
 	if(!result.result && query.email_verify_flag.toString() == '1'){
 		return {result: false, code: "Incorrect Password"}
 	}
@@ -38,7 +38,7 @@ module.exports = async function login_api(req, res) {
 	    	throw Error (result.code)
 	    }
 	    // let balance = await user_model.get_balance(username)
-    	res.send({ code: "Login successful", level: result.level, ref_code: result.ref_code}) // TODO: returning clam_balance depreciated
+    	res.send({ code: "Login successful", level: result.level, ref_code: result.ref_code, new_user:result.new_user}) // TODO: returning clam_balance depreciated
 
 	}
 	catch(err){
