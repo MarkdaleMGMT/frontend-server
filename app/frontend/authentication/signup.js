@@ -25,9 +25,13 @@ module.exports = async function signup_api(req, res) {
 		}
 
 		let dup = await user_model.get_user_by_username(req.body.username)
-		console.log("dup is:" + JSON.stringify(dup))
 		if (dup != null){
 			throw new Error("The username is already taken! Please enter another one")
+		}
+
+		let dupEmail = await user_model.get_user_by_email(req.body.email)
+		if (dupEmail != null){
+			throw new Error("The email already has an account on the system!")
 		}
 
 		try {
