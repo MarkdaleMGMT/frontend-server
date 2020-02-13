@@ -42,6 +42,11 @@ async function get_user_by_username(username){
   return rows[0];
 }
 
+async function get_user_by_email(username){
+  const [rows, fields] = await db.connection.query("SELECT * FROM user WHERE email = ?;",[username]);
+  return rows[0];
+}
+
 async function reset_password(token, new_pass){
   const saltRounds = 10;
   let hashedPassword = await bcrypt.hash(new_pass, saltRounds)
@@ -139,5 +144,6 @@ module.exports = {
   set_email_token,
   check_token_expire,
   reset_password,
-  update_new_user_flag
+  update_new_user_flag,
+  get_user_by_email
 };
