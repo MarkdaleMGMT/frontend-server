@@ -44,7 +44,7 @@ module.exports = async function signup_api(req, res) {
 			 
 	 		let link = domain + "/frontend/email/" + result
 	 		let send_email = await email_model.send_email(req.body.email, "Email Verification", "please confirm your email by going to this link: " + link)
-	 		res.send({code: "Signup successful", ref_code: md5(req.body.username).slice(0,5)})
+			 res.send({code: 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder', ref_code: md5(req.body.username).slice(0,5)})
 		} catch (err) {
 			throw err
 		}
